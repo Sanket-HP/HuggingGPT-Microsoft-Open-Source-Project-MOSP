@@ -1,7 +1,13 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
+from flask_cors import CORS
 from models.model import process_query
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS
+
+@app.route('/')
+def home():
+    return render_template('index.html')
 
 @app.route('/query', methods=['POST'])
 def handle_query():
